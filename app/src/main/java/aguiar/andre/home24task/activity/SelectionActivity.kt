@@ -5,9 +5,12 @@ import aguiar.andre.home24task.R
 import aguiar.andre.home24task.dataclass.Articles
 import aguiar.andre.home24task.dataclass.ArticlesSku
 import aguiar.andre.home24task.dataclass.HomeApiResponse
+import android.content.Context
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_start.*
 import retrofit2.Call
@@ -15,10 +18,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.squareup.picasso.Picasso
 
 class SelectionActivity : AppCompatActivity() {
 
     private var articlesData: TextView? = null
+    private val context: Context get() = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,16 +60,14 @@ class SelectionActivity : AppCompatActivity() {
 
                     for (article in listArticle) {
                         for(media in article.media) {
-                            //val sku = article.sku.toString()
-                            //getArticle(sku)
-                            //val stringBuilder = media.uri
-                            //articlesData!!.text = stringBuilder
+
+                            val imageViewCard = findViewById(R.id.imageArticle) as ImageView
+                            Picasso.with(context) .load(media.uri).into(imageViewCard)
                         }
                     }
 
-                    //val stringBuilder = articlesSku.sku!!
-
-                    //articlesData!!.text = stringBuilder
+                    val stringBuilder = "0/"+ listArticle.size.toString()
+                    articlesData!!.text = stringBuilder
                 }
             }
 
@@ -75,35 +78,11 @@ class SelectionActivity : AppCompatActivity() {
 
     }
 
-    internal fun getArticle(sku:String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BaseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(ArticlesService::class.java)
-        val callArticle = service.getArticles(sku , appDomain, locale)
-        callArticle.enqueue(object : Callback<ArticlesSku> {
-            override fun onResponse(callArticle: Call<ArticlesSku>, response: Response<ArticlesSku>) {
-                if (response.code() == 200) {
-                    val articlesSku = response.body()!!
-
-                    val stringBuilder = articlesSku.sku!!
-
-                    articlesData!!.text = stringBuilder
-                }
-            }
-
-            override fun onFailure(callArticle: Call<ArticlesSku>, t: Throwable) {
-
-            }
-        })
-    }
-
     companion object {
 
         var BaseUrl = "https://api-mobile.home24.com/api/"
         var appDomain = "1"
         var locale = "de_DE"
-        var limit = "1"
+        var limit = "10"
     }
 }
