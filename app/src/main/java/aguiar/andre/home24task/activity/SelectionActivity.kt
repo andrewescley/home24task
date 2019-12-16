@@ -1,18 +1,21 @@
 package aguiar.andre.home24task.activity
 
-import aguiar.andre.home24task.R
 import aguiar.andre.home24task.ArticlesService
+import aguiar.andre.home24task.R
 import aguiar.andre.home24task.dataclass.Articles
 import aguiar.andre.home24task.dataclass.HomeApiResponse
-import android.content.Context
+import aguiar.andre.home24task.persistence.ArticleFavorite
+import aguiar.andre.home24task.persistence.ArticleFavoriteService
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import android.view.MenuItem
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import com.squareup.picasso.Picasso
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,10 +24,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 @Suppress("UNREACHABLE_CODE")
-class SelectionActivity : AppCompatActivity() {
+class SelectionActivity : BaseActivity() {
 
     private var articlesData: TextView? = null
-    private val context: Context get() = this
     var listArticle: ArrayList<Articles> = ArrayList()
     var intImage: Int = 0
 
@@ -45,13 +47,24 @@ class SelectionActivity : AppCompatActivity() {
         val btDislike = findViewById<FloatingActionButton>(R.id.btFloatDislike)
         btDislike.setOnClickListener { onClickDislike() }
 
+
         getEmbedded()
     }
 
     private fun onClickLike() {
         intImage++
         if (intImage < listArticle.size) {
+            var articleFavorite = ArticleFavorite()
+            articleFavorite.sku = listArticle[intImage].sku.toString()
+            articleFavorite.isFavorite = "1"
+
+            doAsync {
+                val save = ArticleFavoriteService.save(articleFavorite)
+                uiThread {
+                }
+            }
             showImage(listArticle[intImage])
+
         } else{
             val btReview = findViewById<FloatingActionButton>(R.id.btFloatReview)
             val btLike = findViewById<FloatingActionButton>(R.id.btFloatLike)
@@ -67,6 +80,14 @@ class SelectionActivity : AppCompatActivity() {
     private fun onClickDislike() {
         intImage++
         if (intImage < listArticle.size) {
+            var articleFavorite = ArticleFavorite()
+            articleFavorite.sku = listArticle[intImage].sku.toString()
+            articleFavorite.isFavorite = "0"
+            doAsync {
+                val save = ArticleFavoriteService.save(articleFavorite)
+                uiThread {
+                }
+            }
             showImage(listArticle[intImage])
         } else{
             val btReview = findViewById<FloatingActionButton>(R.id.btFloatReview)
@@ -124,8 +145,6 @@ class SelectionActivity : AppCompatActivity() {
 
     fun showImage(articles: Articles) {
 
-        val title: String = articles.title.toString()
-        val sku: String = articles.sku.toString()
         val imageView = findViewById<ImageView>(R.id.imageArticle)
 
         if (imageView != null) {

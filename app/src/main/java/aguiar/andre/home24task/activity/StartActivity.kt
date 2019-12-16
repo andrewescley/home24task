@@ -7,9 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class StartActivity : AppCompatActivity() {
-
-    private val context: Context get() = this
+class StartActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
