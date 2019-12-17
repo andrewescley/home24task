@@ -15,6 +15,7 @@ object DatabaseManager {
                 appContext,
                 ArticleFavoriteDatabase::class.java,
                 "db.sqlite")
+                .fallbackToDestructiveMigration()
                 .build()
     }
 

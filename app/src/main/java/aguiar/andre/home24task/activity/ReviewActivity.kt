@@ -9,6 +9,7 @@ import aguiar.andre.home24task.persistence.ArticleFavoriteService
 import android.arch.lifecycle.LiveData
 import android.os.Bundle
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,11 +66,23 @@ class ReviewActivity : BaseActivity() {
 
     fun checkFavorite(listArticles: ArrayList<Articles>){
 
-        var articleFavorite = ArticleFavorite()
-        articleFavorite.sku = listArticles[0].sku.toString()
-
+        var texto=""
         doAsync {
-            val articleFavorite = ArticleFavoriteService.isLike(articleFavorite)
+            val newListArticles:List<ArticleFavorite> = ArticleFavoriteService.getArticles()
+            for (article in listArticles){
+                var i: Int = 0
+                for (i in newListArticles.indices) {
+                    if (article.sku == newListArticles[i].sku){
+                        if (newListArticles[i].flagFavorite == "1"){
+                            texto = "like"
+                        }
+                        else{
+                            texto = "dlike"
+                        }
+                    }
+                }
+            }
+
             uiThread {
 
             }

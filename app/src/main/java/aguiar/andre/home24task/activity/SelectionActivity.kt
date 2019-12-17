@@ -52,20 +52,25 @@ class SelectionActivity : BaseActivity() {
     }
 
     private fun onClickLike() {
+
+        var articleFavorite = ArticleFavorite()
+        articleFavorite.sku = listArticle[intImage].sku.toString()
+        articleFavorite.flagFavorite = "1"
         intImage++
         if (intImage < listArticle.size) {
-            var articleFavorite = ArticleFavorite()
-            articleFavorite.sku = listArticle[intImage].sku.toString()
-            articleFavorite.isFavorite = "1"
-
             doAsync {
                 val save = ArticleFavoriteService.save(articleFavorite)
                 uiThread {
                 }
             }
             showImage(listArticle[intImage])
-
         } else{
+            doAsync {
+                val save = ArticleFavoriteService.save(articleFavorite)
+                uiThread {
+                }
+            }
+
             val btReview = findViewById<FloatingActionButton>(R.id.btFloatReview)
             val btLike = findViewById<FloatingActionButton>(R.id.btFloatLike)
             val btDislike = findViewById<FloatingActionButton>(R.id.btFloatDislike)
@@ -78,11 +83,12 @@ class SelectionActivity : BaseActivity() {
     }
 
     private fun onClickDislike() {
+
+        var articleFavorite = ArticleFavorite()
+        articleFavorite.sku = listArticle[intImage].sku.toString()
+        articleFavorite.flagFavorite = "0"
         intImage++
         if (intImage < listArticle.size) {
-            var articleFavorite = ArticleFavorite()
-            articleFavorite.sku = listArticle[intImage].sku.toString()
-            articleFavorite.isFavorite = "0"
             doAsync {
                 val save = ArticleFavoriteService.save(articleFavorite)
                 uiThread {
@@ -90,6 +96,11 @@ class SelectionActivity : BaseActivity() {
             }
             showImage(listArticle[intImage])
         } else{
+            doAsync {
+                val save = ArticleFavoriteService.save(articleFavorite)
+                uiThread {
+                }
+            }
             val btReview = findViewById<FloatingActionButton>(R.id.btFloatReview)
             val btLike = findViewById<FloatingActionButton>(R.id.btFloatLike)
             val btDislike = findViewById<FloatingActionButton>(R.id.btFloatDislike)

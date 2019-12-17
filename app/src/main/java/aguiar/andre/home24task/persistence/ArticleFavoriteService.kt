@@ -11,13 +11,25 @@ object ArticleFavoriteService {
 
     fun isLike(articleFavorite: ArticleFavorite) : Boolean {
         val dao = DatabaseManager.getArticleFavoriteDAO()
-        val exists = dao.getBySku(articleFavorite.sku) != null
+        var exists = false
+        var returnArticleFavorite = dao.getBySku(articleFavorite.sku)
+        if(returnArticleFavorite != null){
+            if (returnArticleFavorite.flagFavorite == "1"){
+                exists = true
+            }
+        }
         return exists
     }
 
     fun save(articleFavorite: ArticleFavorite): Boolean {
         val dao = DatabaseManager.getArticleFavoriteDAO()
         dao.insert(articleFavorite)
+        return true
+    }
+
+    fun delete():Boolean{
+        val dao = DatabaseManager.getArticleFavoriteDAO()
+        dao.deleteAll()
         return true
     }
 
