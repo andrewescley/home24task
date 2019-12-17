@@ -29,6 +29,7 @@ class SelectionActivity : BaseActivity() {
     private var articlesData: TextView? = null
     var listArticle: ArrayList<Articles> = ArrayList()
     var intImage: Int = 0
+    var countLike: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +53,7 @@ class SelectionActivity : BaseActivity() {
     }
 
     private fun onClickLike() {
-
+        countLike++
         var articleFavorite = ArticleFavorite()
         articleFavorite.sku = listArticle[intImage].sku.toString()
         articleFavorite.flagFavorite = "1"
@@ -164,8 +165,8 @@ class SelectionActivity : BaseActivity() {
                 .load(articles.media[0].uri)
                 .into(imageView)
         }
-        val count = intImage+1
-        val stringBuilder = count.toString()+"/"+ listArticle.size.toString()
+
+        val stringBuilder = countLike.toString()+"/"+ listArticle.size.toString()
         articlesData!!.text = stringBuilder
     }
 

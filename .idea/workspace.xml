@@ -23,21 +23,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/ReviewActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/ReviewActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/SelectionActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/SelectionActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/StartActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/StartActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/ArticleFavorite.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/ArticleFavorite.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/ArticleFavoriteDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/ArticleFavoriteDatabase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/ArticleFavoriteService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/ArticleFavoriteService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/DatabaseManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/persistence/DatabaseManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/SelectionActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="94" column="17" lean-forward="true" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
+            <state relative-caret-position="92">
+              <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -75,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/ReviewActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="203">
+              <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -91,6 +78,16 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -491,7 +488,7 @@
     <frame x="4" y="23" width="1260" height="733" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2504105" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2504105" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Captures" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -503,7 +500,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4958949" weight="0.32847896" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48440066" weight="0.32847896" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.5591133" visible="true" weight="0.39967638" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5591133" visible="true" weight="0.39967638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4958949" weight="0.32847896" />
@@ -807,14 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -999,15 +988,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/ReviewActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="203">
+          <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/aguiar/andre/home24task/activity/SelectionActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="94" column="17" lean-forward="true" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
+        <state relative-caret-position="92">
+          <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
         </state>
       </provider>
     </entry>
