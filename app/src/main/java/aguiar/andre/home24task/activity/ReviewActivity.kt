@@ -1,25 +1,25 @@
 package aguiar.andre.home24task.activity
 
-import aguiar.andre.home24task.ArticlesService
+import aguiar.andre.home24task.Adapter
 import aguiar.andre.home24task.R
-import aguiar.andre.home24task.dataclass.Articles
-import aguiar.andre.home24task.dataclass.HomeApiResponse
 import aguiar.andre.home24task.persistence.ArticleFavorite
 import aguiar.andre.home24task.persistence.ArticleFavoriteService
-import android.arch.lifecycle.LiveData
+import android.content.Context
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.view.GestureDetector
+import android.view.MotionEvent
+import android.view.View
+import android.widget.Toast
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class ReviewActivity : BaseActivity() {
 
-    //var listArticle: ArrayList<Articles> = ArrayList()
+    var recyclerView: RecyclerView? = null
+    var listArticleFavorite: ArrayList<ArticleFavorite> = ArrayList()
+    var adapter: Adapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -28,64 +28,85 @@ class ReviewActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
 
-        getEmbedded()
-    }
+        recyclerView = findViewById(R.id.recycler) as RecyclerView
 
-    fun getEmbedded() {
-        var listArticle: ArrayList<Articles> = ArrayList<Articles>()
-        val retrofit = Retrofit.Builder()
-            .baseUrl(SelectionActivity.BaseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(ArticlesService::class.java)
-        val call = service.getEmbedded(
-            SelectionActivity.appDomain,
-            SelectionActivity.locale,
-            SelectionActivity.limit
-        )
-        call.enqueue(object : Callback<HomeApiResponse> {
-            override fun onResponse(
-                call: Call<HomeApiResponse>,
-                response: Response<HomeApiResponse>
-            ) {
-                //TODO: implement later
-                if (response.code() == 200) {
-                    val homeApiResponse: HomeApiResponse = response.body()!!
+        listArticleFavorite = populateList()
 
-                    listArticle = homeApiResponse._embedded!!.articles
-                    checkFavorite(listArticle)
-                }
+        adapter = Adapter(this, listArticleFavorite!!)
+        recyclerView!!.adapter = adapter
+        recyclerView!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+
+        recyclerView!!.addOnItemTouchListener(RecyclerTouchListener(applicationContext, recyclerView!!, object : ClickListener {
+
+            override fun onClick(view: View, position: Int) {
+                Toast.makeText(this@ReviewActivity, listArticleFavorite!![position].title, Toast.LENGTH_LONG).show()
             }
 
-            override fun onFailure(call: Call<HomeApiResponse>, t: Throwable) {
+            override fun onLongClick(view: View?, position: Int) {
 
             }
-        })
-
+        }))
     }
 
-    fun checkFavorite(listArticles: ArrayList<Articles>){
+    private fun populateList(): ArrayList<ArticleFavorite> {
 
-        var texto=""
+        var listArticleFavoriteReturn = ArrayList<ArticleFavorite>()
         doAsync {
-            val newListArticles:List<ArticleFavorite> = ArticleFavoriteService.getArticles()
-            for (article in listArticles){
-                var i: Int = 0
-                for (i in newListArticles.indices) {
-                    if (article.sku == newListArticles[i].sku){
-                        if (newListArticles[i].flagFavorite == "1"){
-                            texto = "like"
-                        }
-                        else{
-                            texto = "dlike"
-                        }
-                    }
-                }
+            val listArticleFavorite = ArticleFavoriteService.getArticles()
+            for (i in listArticleFavorite){
+                val articleFavorite = ArticleFavorite()
+                articleFavorite.sku = i.sku
+                articleFavorite.title = i.title
+                articleFavorite.uri = i.uri
+                articleFavorite.flagFavorite = i.flagFavorite
+                listArticleFavoriteReturn.add(articleFavorite)
             }
-
             uiThread {
 
             }
+        }
+        return listArticleFavoriteReturn
+
+    }
+
+    interface ClickListener {
+        fun onClick(view: View, position: Int)
+
+        fun onLongClick(view: View?, position: Int)
+    }
+
+    internal class RecyclerTouchListener(context: Context, recyclerView: RecyclerView, private val clickListener: ClickListener?) : RecyclerView.OnItemTouchListener {
+
+        private val gestureDetector: GestureDetector
+
+        init {
+            gestureDetector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
+                override fun onSingleTapUp(e: MotionEvent): Boolean {
+                    return true
+                }
+
+                override fun onLongPress(e: MotionEvent) {
+                    val child = recyclerView.findChildViewUnder(e.x, e.y)
+                    if (child != null && clickListener != null) {
+                        clickListener.onLongClick(child, recyclerView.getChildPosition(child))
+                    }
+                }
+            })
+        }
+
+        override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+
+            val child = rv.findChildViewUnder(e.x, e.y)
+            if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
+                clickListener.onClick(child, rv.getChildPosition(child))
+            }
+            return false
+        }
+
+        override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
+
+        override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+
         }
     }
 }

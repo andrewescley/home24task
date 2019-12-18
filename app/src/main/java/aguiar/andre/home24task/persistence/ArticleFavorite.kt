@@ -12,18 +12,26 @@ class ArticleFavorite() : Parcelable {
 
     @ColumnInfo (name ="sku") var sku:  String =""
 
+    @ColumnInfo (name ="title") var title:  String =""
+
+    @ColumnInfo (name ="uri") var uri:  String =""
+
     @ColumnInfo (name ="flagFavorite") var flagFavorite:  String =""
 
     constructor(parcel: Parcel) : this() {
         articleFavoriteId = parcel.readInt()
         sku = parcel.readString()
         flagFavorite = parcel.readString()
+        title = parcel.readString()
+        uri = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(articleFavoriteId)
         parcel.writeString(sku)
         parcel.writeString(flagFavorite)
+        parcel.writeString(title)
+        parcel.writeString(uri)
     }
 
     override fun describeContents(): Int {

@@ -56,6 +56,8 @@ class SelectionActivity : BaseActivity() {
         countLike++
         var articleFavorite = ArticleFavorite()
         articleFavorite.sku = listArticle[intImage].sku.toString()
+        articleFavorite.title = listArticle[intImage].title.toString()
+        articleFavorite.uri = listArticle[intImage].media[0].uri.toString()
         articleFavorite.flagFavorite = "1"
         intImage++
         if (intImage < listArticle.size) {
@@ -87,6 +89,8 @@ class SelectionActivity : BaseActivity() {
 
         var articleFavorite = ArticleFavorite()
         articleFavorite.sku = listArticle[intImage].sku.toString()
+        articleFavorite.title = listArticle[intImage].title.toString()
+        articleFavorite.uri = listArticle[intImage].media[0].uri.toString()
         articleFavorite.flagFavorite = "0"
         intImage++
         if (intImage < listArticle.size) {
