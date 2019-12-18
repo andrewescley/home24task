@@ -48,7 +48,6 @@ class SelectionActivity : BaseActivity() {
         val btDislike = findViewById<FloatingActionButton>(R.id.btFloatDislike)
         btDislike.setOnClickListener { onClickDislike() }
 
-
         getEmbedded()
     }
 
@@ -131,11 +130,17 @@ class SelectionActivity : BaseActivity() {
     }
 
     fun getEmbedded() {
-        //var listArticle: ArrayList<Articles> = ArrayList<Articles>()
+
+        doAsync {
+            val delete = ArticleFavoriteService.delete()
+            uiThread {
+            }
+        }
+
         val retrofit = Retrofit.Builder()
-            .baseUrl(BaseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+                .baseUrl(BaseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
         val service = retrofit.create(ArticlesService::class.java)
         val call = service.getEmbedded(appDomain, locale, limit)
         call.enqueue(object : Callback<HomeApiResponse> {
@@ -156,7 +161,6 @@ class SelectionActivity : BaseActivity() {
 
             }
         })
-
     }
 
     fun showImage(articles: Articles) {

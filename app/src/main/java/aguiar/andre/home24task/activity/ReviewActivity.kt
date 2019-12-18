@@ -23,23 +23,23 @@ class ReviewActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        supportActionBar?.title = "Review Screen"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
+        supportActionBar?.title = "Review Screen"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         recyclerView = findViewById(R.id.recycler) as RecyclerView
 
         listArticleFavorite = populateList()
 
-        adapter = Adapter(this, listArticleFavorite!!)
+        adapter = Adapter(this, listArticleFavorite)
         recyclerView!!.adapter = adapter
         recyclerView!!.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
 
         recyclerView!!.addOnItemTouchListener(RecyclerTouchListener(applicationContext, recyclerView!!, object : ClickListener {
 
             override fun onClick(view: View, position: Int) {
-                Toast.makeText(this@ReviewActivity, listArticleFavorite!![position].title, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ReviewActivity, listArticleFavorite[position].title, Toast.LENGTH_LONG).show()
             }
 
             override fun onLongClick(view: View?, position: Int) {
@@ -98,7 +98,8 @@ class ReviewActivity : BaseActivity() {
 
             val child = rv.findChildViewUnder(e.x, e.y)
             if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
-                clickListener.onClick(child, rv.getChildPosition(child))
+                //clickListener.onClick(child, rv.getChildPosition(child))
+                clickListener.onClick(child,rv.getChildAdapterPosition(child))
             }
             return false
         }
